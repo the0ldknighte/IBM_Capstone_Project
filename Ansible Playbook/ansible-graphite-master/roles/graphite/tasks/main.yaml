@@ -1,0 +1,6 @@
+---
+- include: install.yaml
+- include: setup.yaml
+- include: configure.yaml
+- include: websetup.yaml
+- include: grafana.yaml

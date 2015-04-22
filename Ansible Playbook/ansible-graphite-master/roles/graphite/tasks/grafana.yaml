@@ -1,0 +1,13 @@
+---
+- name: download grafana package
+  get_url:
+    url: https://grafanarel.s3.amazonaws.com/builds/grafana_2.0.0-beta1_amd64.deb
+    dest: '/root/grafana_2.0.0-beta1_amd64.deb'
+- name: install grafana package
+  apt:
+    deb: '/root/grafana_2.0.0-beta1_amd64.deb'
+- name: start grafana service
+  service:
+    name: grafana
+    state: started
+    enabled: true

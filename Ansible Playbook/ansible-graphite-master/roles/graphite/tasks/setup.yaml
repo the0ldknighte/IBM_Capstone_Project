@@ -1,0 +1,19 @@
+---
+- name: install mariadb/mysql packages
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - mariadb-server
+    - libmysqlclient-dev
+    - python-mysqldb
+- name: build database
+  mysql_db:
+    name: graphite
+    state: present
+- name: build database user
+  mysql_user:
+    name: graphite
+    password: '{{ graphite_db_pass }}'
+    priv: 'graphite.*:ALL'
+    state: present

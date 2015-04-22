@@ -1,0 +1,4 @@
+graphite_db_pass: gr4ph1t3
+graphite_cookie_secret: supers3cr3tc00kiestring
+
+carbon_log_rotate: True
