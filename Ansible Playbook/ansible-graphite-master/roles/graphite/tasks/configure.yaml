@@ -1,0 +1,26 @@
+---
+- name: build graphite config file
+  template:
+    src: local_settings.py.j2
+    dest: /etc/graphite/local_settings.py
+- name: run database migrations
+  command: graphite-manage syncdb --noinput
+
+- name: setup /etc/default/graphite-carbon
+  template:
+    src: graphite-carbon.j2
+    dest: /etc/default/graphite-carbon
+- name: setup /etc/carbon/carbon.conf
+  template:
+    src: carbon.conf.j2
+    dest: /etc/carbon/carbon.conf
+- name: setup /etc/carbon/storage-schemas.conf
+  template:
+    src: storage-schemas.conf.j2
+    dest: /etc/carbon/storage-schemas.conf
+
+- name: enable carbon-cache service
+  service:
+    name: carbon-cache
+    state: started
+    enabled: true

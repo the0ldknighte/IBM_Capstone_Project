@@ -1,0 +1,6 @@
+---
+- name: setup graphite_servers
+  hosts: graphite_servers
+  sudo: true
+  roles:
+    - graphite

@@ -1,0 +1,11 @@
+---
+language: python
+python:
+  - "2.7"
+install: "pip install -U ansible"
+sudo: required
+script:
+  - echo -e "[graphite_servers]\nlocalhost" > travis_host
+  - ansible-playbook --syntax-check -i travis_host graphite.yaml
+# this runs a full playbookr run, but travis doesn't have all the APT packages we need
+#  - ansible-playbook -i travis_host graphite.yaml --connection=local -vvvv
